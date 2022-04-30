@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script type="module" src='./index.js'></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-main>
+                <v-container style="background-color: #f0f0f0; width: 900px !important; max-width:none !important;">
+                    <v-row no-gutters>
+                        <v-col cols="9" style="margin-bottom: 10px;">
+                          <div class="boxTitle">
+                            Production Data
+                          </div>
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters>
+                        <v-col cols="12">
+                            <form>
+                                <fieldset class="field_set">
+                                    <legend>infomation</legend>
+                                    <v-row no-gutters style="margin-left: 10px !important; margin-top: 5px;">
+                                        <v-col cols="3">Car ID <input v-model="info['Car ID']" class="infoClass"></v-col>
+                                        <v-col cols="3">Prod ID <select class="infoClass"><option v-for="(i, idx) in info['Prod ID']" :key="idx" value="i">{{i}}</option></select></v-col>
+                                        <v-col cols="4">Test Name <input v-model="info['Test Name']" class="infoClass"><button style="margin-left:3px !important;">Query</button></v-col>
+                                    </v-row>
+                                    <v-row no-gutters style="margin-left: 10px !important; margin-top: 15px;">
+                                        <v-col cols="12">
+                                            <button type="button">Base infomation</button>
+                                            <button type="button">Detail</button>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row no-gutters style="margin-left: 17px !important; margin-top: 15px;">
+                                        <v-col cols="6" style="padding: 0px !important;" v-for="(i, idx) in baseInfomationArr" :key="idx">
+                                            <v-row style="align-items: center !important;">
+                                                <v-col cols="4" style="padding-right:0px !important">{{i.key}}</v-col>
+                                                <v-col cols="8"><input v-model="i.value" style="width: 220px !important;"><button style="margin-left: 5px !important;" v-if="idx === 1">Info</button></v-col>
+                                            </v-row>
+                                        </v-col>
+                                    </v-row>
+                                </fieldset>
+                            </form>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>       
+</body>
+<style></style>
+</html>

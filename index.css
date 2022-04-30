@@ -1,0 +1,38 @@
+
+.boxTitle{
+    background: #c7bfe6 !important;
+    border: 4px solid #e6e5ed !important;
+    border-style: ridge !important;
+    padding: 2px !important;
+}
+
+.field_set{
+    border-color: #cecece !important;
+    border-style: solid !important;
+}
+
+legend {
+    margin-left: 10px;
+    border: #cecece;
+}
+
+input{
+    background-color: white !important;
+    border-style: inset !important;
+}
+
+button{
+    background-color: #e9e9e9 !important;
+    border: 1px solid white !important;
+    border-style: solid !important;
+    padding: 1px 10px !important;
+    font-size: 14px !important;
+    box-shadow: #b6b6b6 2px 2px 5px !important;
+}
+.infoClass{
+    width: 120px !important;
+}
+input, select{
+    background-color: white !important;
+    border-style: solid !important;
+}
