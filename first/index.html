@@ -58,17 +58,17 @@
                                 <!-- detail -->
                                 <v-row no-gutters class="infoContainer" v-if="infomationRouter === 'detail'">
                                     <v-col cols="6">
-                                        <v-row v-for="(i, idx) in detail[0].data" :key="idx" v-if="idx < 4" style="padding: 0px !important; margin: 0 !important;">
+                                        <v-row class="paddingNone magrinNone" v-for="(i, idx) in detail[0].data" :key="idx" v-if="i.key !== 'Current Status' && i.key !== 'Status List'">
                                             <v-col cols="4" style="padding:0px !important">{{i.key}}</v-col>
                                             <v-col cols="8" style="padding:0px !important"><input v-model="i.value" class="infoInput" :style="{ width: '220' + 'px' + '!important' }" disabled></v-col>
                                         </v-row>
                                     </v-col>
                                     <v-col cols="6">
-                                        <v-row v-for="(i, idx) in detail[0].data" :key="idx" v-if="idx === 4" style="padding: 0px !important; margin: 0 !important;">
+                                        <v-row class="paddingNone magrinNone" v-for="(i, idx) in detail[0].data" :key="idx" v-if="i.key === 'Current Status'">
                                             <v-col cols="4" class="paddingNone">{{i.key}}</v-col>
                                             <v-col cols="8" class="paddingNone"><input v-model="i.value" class="infoInput" :style="{ width: '220' + 'px' + '!important' }" disabled></v-col>
                                         </v-row>
-                                        <v-row v-for="(i, idx) in detail[0].data" :key="idx" v-if="idx === 5" style="padding: 0px !important; margin: 0 !important;">
+                                        <v-row class="paddingNone magrinNone" v-for="(i, idx) in detail[0].data" :key="idx" v-if="i.key === 'Status List'">
                                             <v-col cols="12" class="paddingNone">
                                                 <fieldset class="listfield_set">
                                                     <legend style="font-size: 10px;">{{i.key}}</legend>
