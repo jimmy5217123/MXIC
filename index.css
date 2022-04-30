@@ -1,12 +1,38 @@
+*{
+    font-weight: 400 !important;
+}
 
-.boxTitle{
+.paddingNone {
+    padding: 0px !important;
+}
+
+.magrinNone {
+    margin: 0px !important;
+}
+
+.mainContainer {
+    background-color: #f0f0f0 !important;
+    width: 900px !important;
+    max-width:none !important;
+    position: relative !important;
+}
+.dialog {
+    background: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.boxTitle {
     background: #c7bfe6 !important;
-    border: 4px solid #e6e5ed !important;
+    border: 5px solid #eeeeee !important;
     border-style: ridge !important;
     padding: 2px !important;
 }
-
-.field_set{
+.rowMargin {
+    margin-left: 10px !important;
+    margin-top: 5px !important;
+}
+.field_set {
     border-color: #cecece !important;
     border-style: solid !important;
 }
@@ -16,23 +42,65 @@ legend {
     border: #cecece;
 }
 
-input{
-    background-color: white !important;
-    border-style: inset !important;
+.listfield_set {
+    border-color: #cecece !important;
+    border-style: solid !important;
+    padding: 4px 10px !important;
 }
 
-button{
+.listTitle{
+    padding: 0px 5px !important;
+    border: 1px solid #c4c4c4 !important;
+}
+
+.listValue{
+    padding: 0px 5px !important;
+}
+
+
+
+
+button {
     background-color: #e9e9e9 !important;
-    border: 1px solid white !important;
+    border: 1px solid #8e8e8e !important;
+    border-top:  1px solid transparent !important;
+    border-left:  1px solid transparent !important;
     border-style: solid !important;
     padding: 1px 10px !important;
     font-size: 14px !important;
-    box-shadow: #b6b6b6 2px 2px 5px !important;
+    box-shadow: 1px 1px 1px #8c8c8c;
 }
-.infoClass{
-    width: 120px !important;
+
+button:disabled,
+button[disabled] {
+  background-color: #f0f0f0;
+  color: #c0c0c0;
 }
-input, select{
+
+input, select {
     background-color: white !important;
     border-style: solid !important;
+    box-shadow: 2px 2px 2px #8c8c8c inset;
+    padding: 1px !important;
+    padding: 0px 2px !important;
+    border: 1px solid white !important;
+}
+
+.infoContainer {
+    margin: 0px 10px 10px 10px !important;
+    border: 1px solid #e9e9e9;
+    padding: 5px !important;
+    box-shadow: 2px 2px 2px #8c8c8c;
+}
+
+.rowInput {
+    width: 140px !important;
+}
+
+.infoInput {
+    background-color: #f0f0f0 !important;
+}
+
+.boxShadow {
+    box-shadow: 2px 2px 2px #8c8c8c inset;
 }

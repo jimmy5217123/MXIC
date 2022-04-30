@@ -23,7 +23,7 @@ export const base = [
         {key: 'Lot Owner Dept', value: 'MFG', btn: 'Stock Out'},
         {key: 'Count', value: '1'},
         {key: 'Color', value: 'Red'},
-        {key: 'Staus', value: 'prepare'} // 沒給
+        {key: 'Status', value: 'prepare'} // 沒給
       ]
     }
 ];

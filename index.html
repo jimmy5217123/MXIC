@@ -17,7 +17,13 @@
     <div id="app">
         <v-app>
             <v-main>
-                <v-container style="background-color: #f0f0f0; width: 900px !important; max-width:none !important;">
+                <v-container class="mainContainer">
+                    <v-dialog v-model="dialog" persistent max-width="290">
+                            <div v-if="dialog" class="dialog">
+                                Status is Prepare
+                                <button @click="() => {dialog = false}">ok</button>
+                            </div>
+                    </v-dialog>
                     <v-row no-gutters>
                         <v-col cols="9" style="margin-bottom: 10px;">
                           <div class="boxTitle">
@@ -27,30 +33,61 @@
                     </v-row>
                     <v-row no-gutters>
                         <v-col cols="12">
-                            <form>
-                                <fieldset class="field_set">
-                                    <legend>infomation</legend>
-                                    <v-row no-gutters style="margin-left: 10px !important; margin-top: 5px;">
-                                        <v-col cols="3">Car ID <input v-model="info['Car ID']" class="infoClass"></v-col>
-                                        <v-col cols="3">Prod ID <select class="infoClass"><option v-for="(i, idx) in info['Prod ID']" :key="idx" value="i">{{i}}</option></select></v-col>
-                                        <v-col cols="4">Test Name <input v-model="info['Test Name']" class="infoClass"><button style="margin-left:3px !important;">Query</button></v-col>
-                                    </v-row>
-                                    <v-row no-gutters style="margin-left: 10px !important; margin-top: 15px;">
-                                        <v-col cols="12">
-                                            <button type="button">Base infomation</button>
-                                            <button type="button">Detail</button>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row no-gutters style="margin-left: 17px !important; margin-top: 15px;">
-                                        <v-col cols="6" style="padding: 0px !important;" v-for="(i, idx) in baseInfomationArr" :key="idx">
-                                            <v-row style="align-items: center !important;">
-                                                <v-col cols="4" style="padding-right:0px !important">{{i.key}}</v-col>
-                                                <v-col cols="8"><input v-model="i.value" style="width: 220px !important;"><button style="margin-left: 5px !important;" v-if="idx === 1">Info</button></v-col>
-                                            </v-row>
-                                        </v-col>
-                                    </v-row>
-                                </fieldset>
-                            </form>
+                            <fieldset class="field_set">
+                                <legend>infomation</legend>
+                                <v-row no-gutters class="rowMargin">
+                                    <v-col cols="3">Car ID <input v-model="info['Car ID']" class="rowInput" style="background: #83c0ff !important;"></v-col>
+                                    <v-col cols="3">Prod ID <select class="rowInput"><option v-for="(i, idx) in info['Prod ID']" :key="idx" value="i">{{i}}</option></select></v-col>
+                                    <v-col cols="6">Test Name <input v-model="info['Test Name']" class="rowInput"><button type="button" style="margin-left:3px !important;">Query</button></v-col>
+                                </v-row>
+                                <v-row no-gutters class="rowMargin">
+                                    <v-col cols="12">
+                                        <button type="button" @click="() => {infomationRouter = 'baseInfo'}">Base infomation</button>
+                                        <button type="button" @click="() => {infomationRouter = 'detail'}">Detail</button>
+                                    </v-col>
+                                </v-row>
+                                <!-- baseInfo -->
+                                <v-row no-gutters class="infoContainer" v-if="infomationRouter === 'baseInfo'">
+                                    <v-col :cols="i.col" style="padding: 0px !important;" v-for="(i, idx) in baseInfomationArr" :key="idx">
+                                        <v-row style="align-items: center !important;">
+                                            <v-col cols="4" style="padding-right:0px !important">{{i.key}}</v-col>
+                                            <v-col cols="8"><input v-model="i.value" class="infoInput" :style="{ width: i.inputWidth + 'px' + '!important' }" disabled><button type="button" style="margin-left: 5px !important;" v-if="i.info" :disabled="i.key === 'Color'" @click="()=> {dialog = true}">Info</button></v-col>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                                <!-- detail -->
+                                <v-row no-gutters class="infoContainer" v-if="infomationRouter === 'detail'">
+                                    <v-col cols="6">
+                                        <v-row v-for="(i, idx) in detail[0].data" :key="idx" v-if="idx < 4" style="padding: 0px !important; margin: 0 !important;">
+                                            <v-col cols="4" style="padding:0px !important">{{i.key}}</v-col>
+                                            <v-col cols="8" style="padding:0px !important"><input v-model="i.value" class="infoInput" :style="{ width: '220' + 'px' + '!important' }" disabled></v-col>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="6">
+                                        <v-row v-for="(i, idx) in detail[0].data" :key="idx" v-if="idx === 4" style="padding: 0px !important; margin: 0 !important;">
+                                            <v-col cols="4" class="paddingNone">{{i.key}}</v-col>
+                                            <v-col cols="8" class="paddingNone"><input v-model="i.value" class="infoInput" :style="{ width: '220' + 'px' + '!important' }" disabled></v-col>
+                                        </v-row>
+                                        <v-row v-for="(i, idx) in detail[0].data" :key="idx" v-if="idx === 5" style="padding: 0px !important; margin: 0 !important;">
+                                            <v-col cols="12" class="paddingNone">
+                                                <fieldset class="listfield_set">
+                                                    <legend style="font-size: 10px;">{{i.key}}</legend>
+                                                    <v-col class="boxShadow paddingNone">
+                                                        <v-row  class="paddingNone magrinNone" style="font-size: 12px">
+                                                            <v-col cols="6" class="paddingNone listTitle">StateName</v-col>
+                                                            <v-col cols="6" class="paddingNone listTitle">StateValue</v-col>
+                                                        </v-row>
+                                                        <v-row  class="paddingNone magrinNone" style="font-size: 12px; background: white;" v-for="(x, xidx) in i.value" :key="xidx">
+                                                            <v-col cols="6" class="paddingNone listValue">{{x.StateName}}</v-col>
+                                                            <v-col cols="6" class="paddingNone listValue">{{x.StateValue}}</v-col>
+                                                        </v-row>
+                                                    </v-col>
+                                                </fieldset>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
+                                </v-row>
+                            </fieldset>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -58,5 +95,4 @@
         </v-app>
     </div>       
 </body>
-<style></style>
 </html>
