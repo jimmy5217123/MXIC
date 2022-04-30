@@ -34,8 +34,8 @@ export const detail = [
         {key: 'Type', value: 'Production'},
         {key: 'Sub Type', value: 'Production'},
         {key: 'Due TS', value: '2020-07-04-11.43.00.000213'},
-        {key: 'Current Status', value: 'Waiting'},
         {key: 'Bank ID', value: ''},
+        {key: 'Current Status', value: 'Waiting'},
         {key: 'Status List', value: 
             [
                 {StateName:'Previous State', StateValue:'ACTIVE'},
