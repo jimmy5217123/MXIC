@@ -4,9 +4,10 @@ export const MainGroup = {
 	"items":[
 		["GroupAA","Prod1"],
 		["GroupBB","Prod4"],
-		["GroupAA","Prod2"]
+		["GroupAA","Prod2"] // AA?
 	]
 };
+
 export const SubGroup = {
 	"fields":["GroupID","ParentGroupID","Level"],
 	"kind":["String","String","Int32"],

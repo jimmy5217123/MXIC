@@ -18,6 +18,23 @@
         <v-app>
             <v-main>
                 <v-container>
+                    <ul id="myUL">
+                        <li v-for="(mainItem,idx) in MainGroup.items" :key="idx">
+                            <span v-if="haveSubItem(mainItem[1]).length > 0" class="caret">{{mainItem[0]}}</span>
+                            <span v-else class="normal">{{mainItem[0]}}</span>
+                                <ul>
+                                    <li v-for="(subItem, subIdx) in haveSubItem(mainItem[1])" :key="subIdx">
+                                        <span v-if="lastSubItem(subItem[0]).length > 0" class="caret">{{subItem[0]}}</span>
+                                        <span v-else class="normal">{{subItem[0]}}</span>
+                                            <ul>
+                                                <li v-for="(lastItem, lastIdx) in lastSubItem(subItem[0])" :key="lastIdx">
+                                                    <span class="normal">{{lastItem[0]}}</span>
+                                                </li>
+                                            </ul>
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
                 </v-container>
             </v-main>
         </v-app>
