@@ -5,16 +5,46 @@ var app = new Vue({
     vuetify: new Vuetify(),
     data: {
         MainGroup,
-        SubGroup
+        SubGroup,
+        treeArr: []
     },
     computed: {
     },
     methods: {
-        haveSubItem (ProdID) {
-            return this.SubGroup.items.filter(x => x[1] === ProdID)
-        },
-        lastSubItem (ProdID) {
-            return this.SubGroup.items.filter(x => x[1] === ProdID)
+        tree () {
+            const arr = []
+            const mainGroupId = [...new Set(this.MainGroup.items.map(x => x[0]))]
+            mainGroupId.forEach(x => {
+                const childern = this.MainGroup.items.filter(y => y[0] === x).map(z => {
+                    return {
+                        id: z[1],
+                        childern: this.SubGroup.items.filter(item => item[1] === z[1]).map(q => {
+                            return {
+                                id: q[0],
+                                childern: this.SubGroup.items.filter(lastItem => lastItem[1] === q[0]).map(s => {
+                                    return {
+                                        id: s[0],
+                                        childern: [],
+                                        show: false
+                                    }
+                                }),
+                                show: false
+                            }
+                        }),
+                        show: false
+                    }
+                })
+                const obj = {
+                    id: x,
+                    childern,
+                    show: false
+                }
+                arr.push(obj)
+            })
+            this.treeArr = arr
         }
+    },
+    created () {
+        this.tree()
     }
 })

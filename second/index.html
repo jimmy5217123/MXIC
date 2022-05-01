@@ -19,16 +19,22 @@
             <v-main>
                 <v-container>
                     <ul id="myUL">
-                        <li v-for="(mainItem,idx) in MainGroup.items" :key="idx">
-                            <span v-if="haveSubItem(mainItem[1]).length > 0" class="caret">{{mainItem[0]}}</span>
-                            <span v-else class="normal">{{mainItem[0]}}</span>
+                        <li v-for="(item, idx) in treeArr" :key="idx">
+                            <span v-if="item.childern.length > 0" class="caret" @click="item.show = true">{{item.id}}</span>
+                            <span v-else class="normal">{{item.id}}</span>
                                 <ul>
-                                    <li v-for="(subItem, subIdx) in haveSubItem(mainItem[1])" :key="subIdx">
-                                        <span v-if="lastSubItem(subItem[0]).length > 0" class="caret">{{subItem[0]}}</span>
-                                        <span v-else class="normal">{{subItem[0]}}</span>
+                                    <li v-for="(subItem, subIdx) in item.childern" :key="subIdx">
+                                        <span v-if="subItem.childern.length > 0 && item.show" class="caret" @click="subItem.show = true">{{subItem.id}}</span>
+                                        <span v-else-if="item.show" class="normal">{{subItem.id}}</span>
                                             <ul>
-                                                <li v-for="(lastItem, lastIdx) in lastSubItem(subItem[0])" :key="lastIdx">
-                                                    <span class="normal">{{lastItem[0]}}</span>
+                                                <li v-for="(lastItem, lastIdx) in subItem.childern" :key="lastIdx">
+                                                    <span v-if="lastItem.childern.length > 0 && subItem.show" class="caret" @click="lastItem.show = true">{{lastItem.id}}</span>
+                                                    <span v-else-if="subItem.show" class="normal">{{lastItem.id}}</span>
+                                                    <ul>
+                                                        <li v-for="(endItem, endIdx) in lastItem.childern" :key="endIdx">
+                                                            <span v-if="lastItem.show" class="normal">{{endItem.id}}</span>
+                                                        </li>
+                                                    </ul>
                                                 </li>
                                             </ul>
                                     </li>
