@@ -42,8 +42,8 @@
                                 </v-row>
                                 <v-row no-gutters class="rowMargin">
                                     <v-col cols="12">
-                                        <button type="button" @click="() => {infomationRouter = 'baseInfo'}">Base infomation</button>
-                                        <button type="button" @click="() => {infomationRouter = 'detail'}">Detail</button>
+                                        <button type="button" @click="() => {infomationRouter = 'baseInfo'}" :class="{'routerActice': infomationRouter === 'baseInfo'}">Base infomation</button>
+                                        <button type="button" @click="() => {infomationRouter = 'detail'}" :class="{'routerActice': infomationRouter === 'detail'}">Detail</button>
                                     </v-col>
                                 </v-row>
                                 <!-- baseInfo -->

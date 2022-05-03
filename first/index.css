@@ -77,6 +77,12 @@ button[disabled] {
   color: #c0c0c0;
 }
 
+.routerActice {
+    font-size: 14px !important;
+    box-shadow: 2px 2px 2px #8c8c8c inset;
+    border:  1px solid transparent !important;
+}
+
 input, select {
     background-color: white !important;
     border-style: solid !important;
