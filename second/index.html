@@ -20,15 +20,15 @@
                 <v-container>
                     <ul id="myUL">
                         <li v-for="(item, idx) in treeArr" :key="idx">
-                            <span v-if="item.childern.length > 0" class="caret" @click="item.show = true">{{item.id}}</span>
+                            <span v-if="item.childern.length > 0" class="caret" :class="{'caret-down': item.show}" @click="item.show = !item.show; closeTreeChildren(item.childern)">{{item.id}}</span>
                             <span v-else class="normal">{{item.id}}</span>
                                 <ul>
                                     <li v-for="(subItem, subIdx) in item.childern" :key="subIdx">
-                                        <span v-if="subItem.childern.length > 0 && item.show" class="caret" @click="subItem.show = true">{{subItem.id}}</span>
+                                        <span v-if="subItem.childern.length > 0 && item.show" class="caret" :class="{'caret-down': subItem.show}" @click="subItem.show = !subItem.show; closeTreeChildren(subItem.childern)">{{subItem.id}}</span>
                                         <span v-else-if="item.show" class="normal">{{subItem.id}}</span>
                                             <ul>
                                                 <li v-for="(lastItem, lastIdx) in subItem.childern" :key="lastIdx">
-                                                    <span v-if="lastItem.childern.length > 0 && subItem.show" class="caret" @click="lastItem.show = true">{{lastItem.id}}</span>
+                                                    <span v-if="lastItem.childern.length > 0 && subItem.show" class="caret" :class="{'caret-down': lastItem.show}" @click="lastItem.show = !lastItem.show; closeTreeChildren(lastItem.childern)">{{lastItem.id}}</span>
                                                     <span v-else-if="subItem.show" class="normal">{{lastItem.id}}</span>
                                                     <ul>
                                                         <li v-for="(endItem, endIdx) in lastItem.childern" :key="endIdx">

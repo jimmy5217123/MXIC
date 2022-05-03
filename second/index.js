@@ -42,6 +42,12 @@ var app = new Vue({
                 arr.push(obj)
             })
             this.treeArr = arr
+        },
+        closeTreeChildren (childern) {
+            childern.forEach(x => {
+                x.show = false
+                if (x.childern.length > 0) this.closeTreeChildren(x.childern)
+            })
         }
     },
     created () {
